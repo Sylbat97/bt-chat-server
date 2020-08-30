@@ -38,7 +38,8 @@ io.on("connection", (socket) => {
         console.log(message);
         let m = {
             "Author": clients.get(socket),
-            "Content": message
+            "Content": message,
+            "Time" : new Date()
         }
         messages.push(m)
         socket.broadcast.emit("message", m);

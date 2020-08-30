@@ -35,7 +35,7 @@ io.on("connection", (socket) => {
     });
 
     socket.on("message", (message) => {
-        console.log(message);
+        console.log(`[Message] ${message}`);
         let m = {
             "Author": clients.get(socket),
             "Content": message,
@@ -43,5 +43,17 @@ io.on("connection", (socket) => {
         }
         messages.push(m)
         socket.broadcast.emit("message", m);
+    });
+
+    socket.on("command", command => {
+        console.log(`[Command] ${command}`);
+        switch(command) {
+            case "users":
+                socket.emit("users", Array.from(clients.values()));
+                break;
+            default:
+                socket.emit("errors", `Unknown command "${command}".`);
+                break;
+        }
     });
 });

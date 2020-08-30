@@ -1,6 +1,6 @@
 {
   "name": "bt-chat-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "server for bt-chat",
   "main": "index.js",
   "scripts": {
